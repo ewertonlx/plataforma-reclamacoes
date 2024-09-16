@@ -1,14 +1,17 @@
 package src.entities;
 
 public class Client {
+    // Atributos
     private String name;
     private String email;
     private String cpf;
     private String phone;
-
+    
+    // Construtor padrão
     public Client() {
     }
-    
+
+    // Construtor com parâmetros
     public Client(String name, String email, String cpf, String phone) {
         this.name = name;
         this.email = email;
@@ -16,6 +19,7 @@ public class Client {
         this.phone = phone;
     }
 
+    // Getters e Setters
     public String getName() {
         return name;
     }

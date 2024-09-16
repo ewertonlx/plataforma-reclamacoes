@@ -4,6 +4,7 @@ import src.interfaces.IClient;
 import java.util.List;
 
 public class ClientRepository implements IClient {
+    // Implementação dos métodos da interface IClient
     @Override
     public void addClient(Client client) {
         // Adiciona o cliente na Lista

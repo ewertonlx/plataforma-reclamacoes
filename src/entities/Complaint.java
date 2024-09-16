@@ -1,15 +1,18 @@
 package src.entities;
 
 public class Complaint {
+    // Atributos
     private String title;
     private String description;
     private int id;
     private String status;
     private Client client;
 
+    // Construtor padrão
     public Complaint() {
     }
 
+    // Construtor com parâmetros
     public Complaint(String title, String description,int id, String status, Client client) {
         this.title = title;
         this.description = description;
@@ -18,6 +21,7 @@ public class Complaint {
         this.client = client;
     }
 
+    // Getters e Setters
     public String getTitle() {
         return title;
     }
