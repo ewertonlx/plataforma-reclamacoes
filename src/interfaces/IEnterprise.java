@@ -7,6 +7,6 @@ public interface IEnterprise {
     void addEnterprise(Enterprise enterprise);
     void removeEnterprise(Enterprise enterprise);
     void updateEnterprise(Enterprise enterprise);
-    Enterprise getEnterprise(int id);
+    Enterprise getEnterprise(String cnpj);
     List<Enterprise> getAllEnterprises();
 }
