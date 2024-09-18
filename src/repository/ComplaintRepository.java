@@ -17,9 +17,10 @@ public class ComplaintRepository implements IComplaint {
     }
 
     @Override
-    public void removeComplaint(Complaint complaint) {
+    public Complaint removeComplaint(int id) {
         // Remove a reclamação da Lista
-        complaintService.removeComplaintService(complaint, complaints);
+        complaintService.removeComplaintService(id, complaints);
+        return id == 0 ? null : getComplaint(id);
     }
 
     @Override

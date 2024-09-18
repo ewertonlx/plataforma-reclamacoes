@@ -12,9 +12,9 @@ public class ComplaintService {
         }
     }
 
-    public void removeComplaintService(Complaint complaint, ArrayList<Complaint> complaints) {
+    public void removeComplaintService(int id, ArrayList<Complaint> complaints) {
         for(Complaint c : complaints) {
-            if(c.getId() == complaint.getId()) {
+            if(c.getId() == id) {
                 complaints.remove(c);
                 break;
             }
