@@ -2,6 +2,7 @@ package src.entities;
 
 public class Client {
     // Atributos
+    private int codigo;
     private String name;
     private String email;
     private String cpf;
@@ -20,6 +21,15 @@ public class Client {
     }
 
     // Getters e Setters
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+    
     public String getName() {
         return name;
     }
