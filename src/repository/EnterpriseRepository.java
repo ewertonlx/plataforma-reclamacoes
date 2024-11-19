@@ -1,43 +1,75 @@
 package src.repository;
-
+import src.connection.Conexao;
 import src.entities.Enterprise;
 import src.interfaces.IEnterprise;
-import src.services.EnterpriseService;
 
-import java.util.ArrayList;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class EnterpriseRepository implements IEnterprise {
-    private EnterpriseService enterpriseService = new EnterpriseService();
-    private ArrayList<Enterprise> enterprises = new ArrayList<>();
     @Override
-    public void addEnterprise(Enterprise enterprise) {
-        // Adiciona a empresa na Lista
-        enterpriseService.addEnterpriseService(enterprise, enterprises);
+    public void addEnterprise(Enterprise c) {
+        String sql = "INSERT INTO reclamacoesdb.empresa (cnpj, nomeEmpresa) VALUES (?, ?)";
+        try {
+            PreparedStatement ps = Conexao.getConexao().prepareStatement(sql);
+            ps.setString(1, c.getCnpj());
+            ps.setString(2, c.getCorporateName());
+            ps.execute();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void removeEnterprise(Enterprise enterprise) {
-        // Remove a empresa da Lista
-        enterpriseService.removeEnterpriseService(enterprise, enterprises);
+    public void removeEnterprise(int id) {
+        String sql = "DELETE FROM reclamacoesdb.empresa WHERE idEmpresa = ?";
+        try {
+            PreparedStatement ps = Conexao.getConexao().prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.execute();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void updateEnterprise(Enterprise enterprise) {
-        // Atualiza a empresa na Lista
-        enterpriseService.updateEnterpriseService(enterprise, enterprises);
+    public void updateEnterprise(Enterprise et, int id) {
+        String sql = "UPDATE reclamacoesdb.empresa SET cnpj = ?, nomeEmpresa = ? WHERE idEmpresa = ?";
+        try {
+            PreparedStatement ps = Conexao.getConexao().prepareStatement(sql);
+            ps.setString(1, et.getCnpj());
+            ps.setString(2, et.getCorporateName());
+            ps.setInt(3, id);
+            ps.execute();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public Enterprise getEnterprise(String cnpj) {
-        // Retorna a empresa pelo CNPJ
-        return enterpriseService.getEnterpriseService(cnpj, enterprises);
-    }
+    public String getEnterprise(String cnpj) {
+        String sql = "SELECT * FROM reclamacoesdb.empresa WHERE idEmpresa = ?";
+        String result = "";
+        try {
+            PreparedStatement ps = Conexao.getConexao().prepareStatement(sql);
+            ps.setString(1, cnpj);
+            ResultSet rs = ps.executeQuery();
 
-    @Override
-    public ArrayList<Enterprise> getAllEnterprises() {
-        // Lista todas empresas registradas
-        return enterprises;
+            if(rs.next()){
+                result = "ID: " + rs.getInt("idEmpresa") + "\n" +
+                        "Nome: " + rs.getString("nomeEmpresa") + "\n" +
+                        "CNPJ: " + rs.getString("cnpj") + "\n";
+            } else {
+                result = "Empresa não encontrada!";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
-
 
 }

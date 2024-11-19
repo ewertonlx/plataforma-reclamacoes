@@ -1,12 +1,10 @@
 package src.interfaces;
-import java.util.List;
 import src.entities.Complaint;
 
 public interface IComplaint {
     // Métodos da interface IComplaint que devem ser implementados pela classe ComplaintRepository
-    void addComplaint(Complaint complaint);
-    void removeComplaint(Complaint complaint);
-    void updateComplaint(Complaint complaint);
-    Complaint getComplaint(int id);
-    List<Complaint> getAllComplaints();
+    public void addComplaint(Complaint complaint);
+    public void removeComplaint(int id);
+    public void updateComplaint(Complaint complaint, int id);
+    public String getComplaint(int id);
 }

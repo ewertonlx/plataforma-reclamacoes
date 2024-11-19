@@ -1,12 +1,10 @@
 package src.interfaces;
 import src.entities.Client;
-import java.util.ArrayList;
 
 public interface IClient {
     // Métodos da interface IClient que devem ser implementados pela classe ClientRepository
-    void addClient(Client client);
-    void removeClient(int idCliente);
-    void updateClient(Client client);
-    Client getClient(String id);
-    ArrayList<Client> getAllClients();
+    public void addClient(Client client);
+    public void removeClient(int idCliente);
+    public void updateClient(Client client, int id);
+    public String getClient(int id);
 }
