@@ -27,7 +27,6 @@ public class ClientRepository implements IClient {
 
     @Override
     public void removeClient(int idCliente) {
-        // Remove o cliente da Lista
         String sql = "DELETE FROM reclamacoesdb.cliente WHERE idCliente = ?";
         try {
             PreparedStatement ps = Conexao.getConexao().prepareStatement(sql);
